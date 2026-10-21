@@ -1,0 +1,38 @@
+[
+  {
+    "name": "ARM LLVM (ATfE) - Ninja",
+    "description": "Kit with toolchain file and toolchain path in environment",
+    "toolchainFile": "${workspaceFolder}/cmake/llvm.cmake",
+    "cmakeSettings": {
+      "ARM_TOOLCHAIN_PATH": "${env:ARM_TOOLCHAIN_PATH}"
+    },
+    "preferredGenerator": {
+      "name": "Ninja"
+    },
+    "isTrusted": true
+  },
+  {
+    "name": "ARM LLVM (ATfE) - Unix Makefiles",
+    "description": "Kit with toolchain file and toolchain path in environment",
+    "toolchainFile": "${workspaceFolder}/cmake/llvm.cmake",
+    "cmakeSettings": {
+      "ARM_TOOLCHAIN_PATH": "${env:ARM_TOOLCHAIN_PATH}"
+    },
+    "preferredGenerator": {
+      "name": "Unix Makefiles"
+    },
+    "isTrusted": true
+  },
+  {
+    "name": "ARM LLVM (ATfE) - MinGW Makefiles",
+    "description": "Kit with toolchain file and toolchain path in environment",
+    "toolchainFile": "${workspaceFolder}/cmake/llvm.cmake",
+    "cmakeSettings": {
+      "ARM_TOOLCHAIN_PATH": "${env:ARM_TOOLCHAIN_PATH}"
+    },
+    "preferredGenerator": {
+      "name": "MinGW Makefiles"
+    },
+    "isTrusted": true
+  }
+]

@@ -1,0 +1,41 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	// NOTE: this workspace is opened via this .code-workspace file, so any
+	// *window*-scoped setting must live here. VS Code ignores window-scoped
+	// settings found in a folder's .vscode/settings.json once a .code-workspace
+	// is open; only *resource*-scoped ones (cmake.sourceDirectory,
+	// cmake.buildDirectory, cmake.cmakePath, cmake.useCMakePresets, ...) are
+	// still read from there. That is why .vscode/settings.json can drive the
+	// build correctly while the status bar entries stay hidden.
+	"settings": {
+		// CMake Tools 1.24+ defaults this to "hidden" (the selectors moved to
+		// the "CMake Project Status" view in the side bar). Restore the status
+		// bar entries: kit, build variant, build/debug/launch buttons.
+		"cmake.options.statusBarVisibility": "visible",
+		"cmake.options.advanced": {
+			"kit": {
+				"statusBarVisibility": "visible",
+				"statusBarLength": 30
+			},
+			"variant": {
+				"statusBarVisibility": "visible"
+			},
+			"build": {
+				"statusBarVisibility": "visible"
+			},
+			"buildTarget": {
+				"statusBarVisibility": "visible"
+			},
+			"debug": {
+				"statusBarVisibility": "visible"
+			},
+			"launch": {
+				"statusBarVisibility": "visible"
+			}
+		}
+	}
+}

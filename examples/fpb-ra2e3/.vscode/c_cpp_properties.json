@@ -1,0 +1,17 @@
+{
+  "configurations": [
+    {
+      "name": "Generic",
+      "configurationProvider": "ms-vscode.cmake-tools",
+      "defines": [],
+      "intelliSenseMode": "clang-arm",
+      "compilerPath": "${env:ARM_TOOLCHAIN_PATH}/clang.exe",
+      "compilerArgs": ["--target=arm-none-eabi"],
+      "browse": {
+        "path": [],
+        "limitSymbolsToIncludedHeaders": true
+      }
+    }
+  ],
+  "version": 4
+}

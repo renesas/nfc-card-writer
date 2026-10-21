@@ -1,0 +1,20 @@
+# Normalise line endings so the tree does not churn between Windows and Linux
+# checkouts. Sources are stored LF; Windows-only tooling files keep CRLF.
+* text=auto eol=lf
+
+*.c    text eol=lf
+*.h    text eol=lf
+*.md   text eol=lf
+*.sh   text eol=lf
+
+# e2 studio / Eclipse and RASC write these; leave them alone.
+.project       -text
+.cproject      -text
+*.launch       -text
+configuration.xml -text
+*.prefs        -text
+
+# Binary
+*.png  binary
+*.elf  binary
+*.srec binary

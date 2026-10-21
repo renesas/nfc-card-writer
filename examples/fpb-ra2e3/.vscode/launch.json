@@ -1,0 +1,42 @@
+{
+  "configurations": [
+    {
+      "name": "Renesas GDB Debugging Default",
+      "type": "renesas-hardware",
+      "request": "launch",
+      "program": "${command:cmake.launchTargetPath}",
+      "target": {
+        "device": "R7FA2E307",
+        "deviceFamily": "RA",
+        "debuggerType": "SEGGERJLINKARM",
+        "supportFolder": "${command:renesas.debug.supportFolder}"
+      }
+    },
+    {
+        "name": "Renesas GDB Debugging Server",
+        "type": "cortex-debug",
+        "request": "launch",
+        "cwd": "${workspaceFolder}",
+        "executable": "${command:cmake.launchTargetPath}",
+        "servertype": "external",
+        "gdbTarget": "localhost:2331",
+        "gdbPath": "${env:ARM_GDB_PATH}",
+        "device": "R7FA2E307",
+        "interface": "swd",
+        "runToEntryPoint": "main",
+        "overrideLaunchCommands": [
+            "set remotetimeout 60",
+            "set tcp connect-timeout 60",
+            "-target-select extended-remote localhost:2331",
+            "monitor halt",
+            "monitor reset 0",
+            "-target-download",
+            "monitor reset 0"
+        ],
+        "overrideRestartCommands": [
+            "monitor reset 0"
+        ]
+    }
+  ],
+  "version": "0.2.0"
+}

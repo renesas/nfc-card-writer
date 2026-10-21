@@ -1,0 +1,59 @@
+{
+  // cmake.cmakePath is deliberately NOT set: forcing it to ${env:CMAKE_PATH}
+  // gave CMake Tools an empty path on PCs without that variable, so it could
+  // not start and no kit was shown. CMake Tools now uses its own setting or the
+  // CMake on PATH (the Renesas Platform Manager installs one).
+  // cmake.additionalKits is deliberately NOT set: the Renesas Platform
+  // extension registers its kits (e.g. "Renesas Platform: Arm LLVM Toolchain")
+  // through the user-level cmake.additionalKits setting, and an empty list
+  // here hid all of them in this project.
+  // cmake.environment is deliberately NOT set either: the Renesas Platform
+  // extension passes the active Smart Configurator (RASC_EXE_PATH) through the
+  // user-level cmake.environment, which a project value would replace. Ninja is
+  // found by cmake/llvm.cmake (or comes with the Renesas Platform kits).
+  "cmake.configureOnOpen": true,
+  "cmake.configureOnEdit": true,
+  "cmake.useCMakePresets": "never",
+  // Use Ninja directly instead of letting CMake Tools probe PATH for a build
+  // tool (it gave "No usable generator found" when ninja was not on PATH).
+  // cmake/llvm.cmake points CMake at the Ninja installed by the Renesas
+  // Platform Manager if none is on PATH.
+  "cmake.generator": "Ninja",
+  // Show the kit / build variant / build / debug entries in the status bar.
+  // These are window-scoped: they apply when this folder is opened directly;
+  // when ra2e3_nfc_writer.code-workspace is opened, the same entries in that
+  // file's "settings" block are used instead.
+  "cmake.options.statusBarVisibility": "visible",
+  "cmake.options.advanced": {
+    "kit": { "statusBarVisibility": "visible", "statusBarLength": 30 },
+    "variant": { "statusBarVisibility": "visible" },
+    "build": { "statusBarVisibility": "visible" },
+    "buildTarget": { "statusBarVisibility": "visible" },
+    "debug": { "statusBarVisibility": "visible" },
+    "launch": { "statusBarVisibility": "visible" }
+  },
+  "cmake.sourceDirectory": "${workspaceFolder}",
+  "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}",
+  "cmake.preferredGenerators": [
+    "Ninja",
+    "MinGW Makefiles",
+    "Unix Makefiles"
+  ],
+  "cmake.debugConfig": {
+    "name": "Renesas GDB Debugging",
+    "type": "renesas-hardware",
+    "request": "launch",
+    "target": {
+      "device": "R7FA2E307",
+      "deviceFamily": "RA",
+      "debuggerType": "SEGGERJLINKARM"
+    },
+    "cwd": "${command:renesas.debug.supportFolder}"
+  },
+  "clangd.arguments": [
+    "--query-driver=${env:ARM_TOOLCHAIN_PATH}/*",
+    "--compile-commands-dir=${workspaceFolder}/build/Debug",
+    "--background-index"
+  ],
+  "clangd.path": "${config:renesas-platform.crossProbeClangdPath}"
+}
